@@ -1,0 +1,17 @@
+{
+  "name": "初二上册·考点通",
+  "short_name": "考点通",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#173b63",
+  "description": "初二上册七科学习视频整理与进度管理",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

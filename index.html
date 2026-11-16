@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173b63">
+<meta name="description" content="初二上册七科学习视频整理与学习进度管理">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>初二上册·考点通</title>
+<style>
+:root{--navy:#173b63;--blue:#2d5e8d;--bg:#f4f7fb;--card:#fff;--ink:#172334;--muted:#697789;--line:#e5eaf0;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+header{background:linear-gradient(135deg,#173b63,#285b86);color:#fff;padding:22px 18px 20px;border-radius:0 0 22px 22px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;opacity:.95}.pill{border:1px solid #ffffff55;border-radius:20px;padding:5px 10px;font-size:12px}
+h1{font-size:25px;margin:20px 0 6px;letter-spacing:.3px}header p{margin:0;color:#dce8f4;font-size:13px}
+.wrap{max-width:780px;margin:auto;padding:16px 14px 40px}
+.progress{margin-top:-1px;background:white;border-radius:15px;padding:14px 16px;box-shadow:0 5px 18px #1c35520d}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.muted{color:var(--muted);font-size:12px}.big{font-weight:700;font-size:19px;margin-top:5px}.bar{height:7px;background:#edf1f5;border-radius:9px;margin-top:12px;overflow:hidden}.bar span{display:block;height:100%;background:var(--green);width:0;transition:width .2s}
+h2{font-size:16px;margin:22px 2px 12px}
+.subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.subject{border:1px solid var(--line);background:#fff;border-radius:13px;padding:12px 5px;text-align:center;color:var(--ink);font:inherit;cursor:pointer}
+.subject .emoji{font-size:22px;display:block;margin-bottom:6px}.subject small{font-size:11px;color:var(--muted)}
+.subject.active{border-color:#315f8b;background:#edf4fb;box-shadow:inset 0 0 0 1px #315f8b}
+.controls{display:flex;gap:8px;margin:15px 0 12px}.search{flex:1;min-width:0;border:1px solid var(--line);border-radius:11px;padding:11px 12px;font-size:14px;background:white}
+select{border:1px solid var(--line);border-radius:11px;padding:0 9px;background:#fff;color:#344256}
+.cards{display:grid;gap:10px}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:14px}
+.cardtop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.tag{font-size:11px;border-radius:20px;background:#edf3f8;color:#315b80;padding:5px 8px;white-space:nowrap}
+.card h3{font-size:15px;line-height:1.45;margin:0 0 6px}.card p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:8px}.watch{background:var(--navy);color:#fff;text-decoration:none;border-radius:9px;padding:9px 13px;font-size:13px}
+.done{display:flex;align-items:center;gap:6px;color:#526174;font-size:12px}.done input{width:17px;height:17px;accent-color:var(--green)}
+.notice{font-size:12px;line-height:1.65;color:#6d5b35;background:#fff8e9;border:1px solid #f2e5c8;border-radius:12px;padding:12px;margin-top:16px}
+footer{text-align:center;color:#8b96a5;font-size:11px;margin:24px 0 6px}
+.empty{padding:26px;text-align:center;color:var(--muted);background:white;border-radius:14px}
+@media(max-width:390px){.subjects{grid-template-columns:repeat(4,1fr)}.subject{padding:10px 2px}.subject .emoji{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div class="top"><strong>📘 初二上册学习中心</strong><span class="pill">七科复习</span></div><h1>初二上册 · 考点通</h1><p>知识串讲 · 重点总结 · 考前复习</p></header>
+<main class="wrap">
+<section class="progress">
+ <div class="row"><div><div class="muted">我的学习进度</div><div class="big"><span id="doneCount">0</span> / <span id="totalCount">0</span> 个视频已完成</div></div><div style="font-size:25px">🎯</div></div>
+ <div class="bar"><span id="progressBar"></span></div>
+</section>
+<h2>选择学科</h2><section class="subjects" id="subjects"></section>
+<div class="controls"><input id="search" class="search" placeholder="搜索课程、章节或关键词…"><select id="sort"><option value="recommended">推荐顺序</option><option value="name">课程名称</option></select></div>
+<div class="row" style="margin:5px 2px 10px"><h2 id="listTitle" style="margin:0">全部视频</h2><span class="muted" id="resultCount"></span></div>
+<section class="cards" id="cards"></section>
+<div class="notice"><strong>教材版本提醒：</strong>这些是此前筛选的网络视频候选，不代表全部与学校当前教材完全一致。尤其生物、历史、道德与法治，请先对照课本封面和目录；标注“旧版”或“待核目录”的资源不要直接当作本学期标准答案。视频由 B 站提供，点击后在网页或 B 站播放；本 App 不下载视频。</div>
+<footer>初二上册·考点通 · 学习资料整理工具</footer>
+</main>
+<script>
+const resources = [{"subject": "数学", "title": "人教版八年级上册教学视频", "type": "章节精讲", "url": "https://www.bilibili.com/video/BV1FZoaYCES8/", "note": "三角形、多边形、全等三角形等；按当前教材目录选看。"}, {"subject": "数学", "title": "2026新改版人教版数学八上+下", "type": "补充资源", "url": "https://www.bilibili.com/video/av116902147989380", "note": "目录混有上下册内容，先核对章节，不建议整套连续观看。"}, {"subject": "英语", "title": "2026版新课标人教版八年级上册同步精讲", "type": "主资源", "url": "https://www.bilibili.com/video/BV1zjxM69EMd/", "note": "单词、课文、语法、写作等，按单元复习。"}, {"subject": "英语", "title": "2026新版人教版八上课文、单词、语法精讲", "type": "补充资源", "url": "https://www.bilibili.com/video/BV1Qy3xzBE8W/", "note": "23个选集，适合系统梳理。"}, {"subject": "物理", "title": "人教版八年级上册物理名师讲解", "type": "主资源", "url": "https://www.bilibili.com/video/BV1bmx56oEVF/", "note": "机械运动、声现象、物态变化、光现象、透镜、密度等。"}, {"subject": "物理", "title": "八年级上册物理课程", "type": "补充资源", "url": "https://www.bilibili.com/video/BV13E7A6zEBX/", "note": "单集较长，适合薄弱章节补课。"}, {"subject": "生物", "title": "2026新教材人教版八年级上生物名师课堂", "type": "主资源·待核目录", "url": "https://www.bilibili.com/video/BV1VKMr6fEnp/", "note": "动物、运动与行为、细菌真菌、病毒等；务必对照学校教材目录。"}, {"subject": "生物", "title": "2026新版人教版八上生物课程", "type": "补充资源·待核目录", "url": "https://www.bilibili.com/video/BV1rdnX6ME3x/", "note": "目录内容与另一套资源存在差异，确认版本后再看。"}, {"subject": "生物", "title": "人教版八上期末高效复习（旧教材）", "type": "旧版速记·谨慎使用", "url": "https://www.bilibili.com/video/BV1MzktYuEyX/", "note": "速记形式参考；旧教材内容不可直接作为本学期复习依据。"}, {"subject": "地理", "title": "八年级上册地理核心知识点梳理", "type": "快速串讲", "url": "https://www.bilibili.com/video/BV1QzSgBgEEH/", "note": "短视频梳理；合集含部分八下内容，只选八上对应章节。"}, {"subject": "地理", "title": "2026新版人教版八上地理系列课程", "type": "章节精讲", "url": "https://www.bilibili.com/video/BV1RAbZ6tEcd/", "note": "疆域、人口、民族、地形、气候、河流等章节。"}, {"subject": "历史", "title": "人教版2025八年级历史上册合集", "type": "主资源", "url": "https://www.bilibili.com/video/BV1gdkUBtEgN/", "note": "鸦片战争至解放战争等内容，含大事年表；对照新教材目录。"}, {"subject": "历史", "title": "八年级上册历史26课知识汇总", "type": "快速速记·旧版待核", "url": "https://www.bilibili.com/video/BV1am4y1K7Q3/", "note": "每课约1–3分钟，上传较早，先核对课名和教材目录。"}, {"subject": "道德与法治", "title": "2026年秋八上道德与法治全册知识点", "type": "优先核验", "url": "https://www.bilibili.com/video/BV1mZui6rEnY/", "note": "标注按2026秋教材整理；打开确认具体视频/课程形式。"}, {"subject": "道德与法治", "title": "八上道德与法治18课系统讲解", "type": "主资源·待核目录", "url": "https://www.bilibili.com/video/BV1nPbC6hEUe/", "note": "社会、网络、规则、法律、责任、国家利益等；对照学校目录。"}];
+const subjects=[["全部","📚","全部课程"],["数学","📐","知识点·题型"],["英语","🔤","单词·语法"],["物理","⚛️","公式·实验"],["生物","🧬","概念·识图"],["地理","🌍","地图·考点"],["历史","📜","时间线"],["道德与法治","⚖️","知识·材料题"]];
+let active="全部";
+const done=JSON.parse(localStorage.getItem("studyDone")||"{}");
+const subjectBox=document.getElementById("subjects");
+subjects.forEach(([name,emoji,sub])=>{const b=document.createElement("button");b.className="subject"+(name==="全部"?" active":"");b.innerHTML=`<span class="emoji">${emoji}</span><strong>${name}</strong><br><small>${sub}</small>`;b.onclick=()=>{active=name;document.querySelectorAll(".subject").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};subjectBox.appendChild(b)});
+function updateProgress(){const total=resources.length, count=Object.values(done).filter(Boolean).length;document.getElementById("doneCount").textContent=count;document.getElementById("totalCount").textContent=total;document.getElementById("progressBar").style.width=(total?count/total*100:0)+"%"}
+function render(){const q=document.getElementById("search").value.trim().toLowerCase();let list=resources.filter(x=>(active==="全部"||x.subject===active)&&[x.title,x.note,x.type,x.subject].join(" ").toLowerCase().includes(q));if(document.getElementById("sort").value==="name")list.sort((a,b)=>a.title.localeCompare(b.title,"zh-CN"));document.getElementById("listTitle").textContent=active==="全部"?"全部视频":active+"课程";document.getElementById("resultCount").textContent=list.length+" 项";const box=document.getElementById("cards");box.innerHTML="";if(!list.length){box.innerHTML='<div class="empty">没有找到匹配课程</div>';return}list.forEach((x)=>{const id=x.subject+"|"+x.title;const card=document.createElement("article");card.className="card";card.innerHTML=`<div class="cardtop"><div><h3>${x.title}</h3><p>${x.note}</p></div><span class="tag">${x.type}</span></div><div class="actions"><a class="watch" href="${x.url}" target="_blank" rel="noopener">▶ 观看视频</a><label class="done"><input type="checkbox" ${done[id]?"checked":""}>已学完</label></div>`;card.querySelector("input").addEventListener("change",e=>{done[id]=e.target.checked;localStorage.setItem("studyDone",JSON.stringify(done));updateProgress()});box.appendChild(card)})}
+document.getElementById("search").addEventListener("input",render);document.getElementById("sort").addEventListener("change",render);updateProgress();render();
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+</script>
+</body></html>
