@@ -46,11 +46,27 @@ footer{text-align:center;color:#8b96a5;font-size:11px;margin:24px 0 6px}
 <div class="controls"><input id="search" class="search" placeholder="搜索课程、章节或关键词…"><select id="sort"><option value="recommended">推荐顺序</option><option value="name">课程名称</option></select></div>
 <div class="row" style="margin:5px 2px 10px"><h2 id="listTitle" style="margin:0">全部视频</h2><span class="muted" id="resultCount"></span></div>
 <section class="cards" id="cards"></section>
-<div class="notice"><strong>教材版本提醒：</strong>这些是此前筛选的网络视频候选，不代表全部与学校当前教材完全一致。尤其生物、历史、道德与法治，请先对照课本封面和目录；标注“旧版”或“待核目录”的资源不要直接当作本学期标准答案。视频由 B 站提供，点击后在网页或 B 站播放；本 App 不下载视频。</div>
+<div class="notice"><strong>教材版本提醒：</strong>视频资源已按2025秋人教版优先重新整理。快速串讲、单词语法、章节精讲分开标注；尚未核实新版目录的资源会明确提示。数学和部分生物资源暂时以检索入口或待核资源呈现，不把未确认内容当作新教材标准答案。视频由 B 站提供，点击后在网页或 B 站播放；本 App 不下载视频。</div>
 <footer>初二上册·考点通 · 学习资料整理工具</footer>
 </main>
 <script>
-const resources = [{"subject": "数学", "title": "人教版八年级上册教学视频", "type": "章节精讲", "url": "https://www.bilibili.com/video/BV1FZoaYCES8/", "note": "三角形、多边形、全等三角形等；按当前教材目录选看。"}, {"subject": "数学", "title": "2026新改版人教版数学八上+下", "type": "补充资源", "url": "https://www.bilibili.com/video/av116902147989380", "note": "目录混有上下册内容，先核对章节，不建议整套连续观看。"}, {"subject": "英语", "title": "2026版新课标人教版八年级上册同步精讲", "type": "主资源", "url": "https://www.bilibili.com/video/BV1zjxM69EMd/", "note": "单词、课文、语法、写作等，按单元复习。"}, {"subject": "英语", "title": "2026新版人教版八上课文、单词、语法精讲", "type": "补充资源", "url": "https://www.bilibili.com/video/BV1Qy3xzBE8W/", "note": "23个选集，适合系统梳理。"}, {"subject": "物理", "title": "人教版八年级上册物理名师讲解", "type": "主资源", "url": "https://www.bilibili.com/video/BV1bmx56oEVF/", "note": "机械运动、声现象、物态变化、光现象、透镜、密度等。"}, {"subject": "物理", "title": "八年级上册物理课程", "type": "补充资源", "url": "https://www.bilibili.com/video/BV13E7A6zEBX/", "note": "单集较长，适合薄弱章节补课。"}, {"subject": "生物", "title": "2026新教材人教版八年级上生物名师课堂", "type": "主资源·待核目录", "url": "https://www.bilibili.com/video/BV1VKMr6fEnp/", "note": "动物、运动与行为、细菌真菌、病毒等；务必对照学校教材目录。"}, {"subject": "生物", "title": "2026新版人教版八上生物课程", "type": "补充资源·待核目录", "url": "https://www.bilibili.com/video/BV1rdnX6ME3x/", "note": "目录内容与另一套资源存在差异，确认版本后再看。"}, {"subject": "生物", "title": "人教版八上期末高效复习（旧教材）", "type": "旧版速记·谨慎使用", "url": "https://www.bilibili.com/video/BV1MzktYuEyX/", "note": "速记形式参考；旧教材内容不可直接作为本学期复习依据。"}, {"subject": "地理", "title": "八年级上册地理核心知识点梳理", "type": "快速串讲", "url": "https://www.bilibili.com/video/BV1QzSgBgEEH/", "note": "短视频梳理；合集含部分八下内容，只选八上对应章节。"}, {"subject": "地理", "title": "2026新版人教版八上地理系列课程", "type": "章节精讲", "url": "https://www.bilibili.com/video/BV1RAbZ6tEcd/", "note": "疆域、人口、民族、地形、气候、河流等章节。"}, {"subject": "历史", "title": "人教版2025八年级历史上册合集", "type": "主资源", "url": "https://www.bilibili.com/video/BV1gdkUBtEgN/", "note": "鸦片战争至解放战争等内容，含大事年表；对照新教材目录。"}, {"subject": "历史", "title": "八年级上册历史26课知识汇总", "type": "快速速记·旧版待核", "url": "https://www.bilibili.com/video/BV1am4y1K7Q3/", "note": "每课约1–3分钟，上传较早，先核对课名和教材目录。"}, {"subject": "道德与法治", "title": "2026年秋八上道德与法治全册知识点", "type": "优先核验", "url": "https://www.bilibili.com/video/BV1mZui6rEnY/", "note": "标注按2026秋教材整理；打开确认具体视频/课程形式。"}, {"subject": "道德与法治", "title": "八上道德与法治18课系统讲解", "type": "主资源·待核目录", "url": "https://www.bilibili.com/video/BV1nPbC6hEUe/", "note": "社会、网络、规则、法律、责任、国家利益等；对照学校目录。"}];
+const resources = [
+{subject:"数学",title:"人教版八上数学·全册知识点串讲检索",type:"快速串讲待核",url:"https://search.bilibili.com/all?keyword=2025秋%20人教版八年级上册数学%20全册知识点串讲",note:"优先选择标题含‘全册知识点、期末总复习、考点归纳’的视频；目前未确认一条目录完整且明确匹配新版的浓缩视频，先不拿旧版冒充。"},
+{subject:"数学",title:"人教版八上数学·单元考点与易错题检索",type:"考点强化",url:"https://search.bilibili.com/all?keyword=人教版八年级上册数学%20期末知识点%20易错题",note:"按学校当前章节选择；重点检查三角形、全等三角形、轴对称等章节是否与本册目录一致。"},
+{subject:"英语",title:"2025秋人教版八上全册单词预习（8单元）",type:"快速记忆·约1小时42分",url:"https://www.bilibili.com/video/BV11KaSz5Eth/",note:"8个单元，每单元约10—15分钟；适合跟读、拼读和拼写。"},
+{subject:"英语",title:"2025新版八上英语语法合集",type:"语法串讲",url:"https://www.bilibili.com/video/BV1UEvAz8EQK/",note:"目前展示不定代词、can/could等单元语法短讲；适合与单词视频配合。"},
+{subject:"英语",title:"2025秋八上英语核心知识点（人教版）",type:"单元考点",url:"https://www.bilibili.com/video/BV1xj1YBSE7T/",note:"8个单元，每集约14—27分钟；比完整课文精讲更适合复习。"},
+{subject:"物理",title:"2025新版人教版八上物理·全册同步课程",type:"章节补漏·非浓缩",url:"https://www.bilibili.com/video/BV19Gegz9ESA/",note:"25个章节，涵盖机械运动、声、物态变化、光、透镜、质量与密度；单集约10—20分钟，适合按薄弱点选看。"},
+{subject:"物理",title:"八上物理必背考点与期中期末冲刺检索",type:"快速考点检索",url:"https://search.bilibili.com/all?keyword=2025秋%20人教版八年级上册物理%20必背知识点%20考点总结",note:"优先选择明确标注2025新版人教版的考点总结；注意旧版章节顺序可能不同。"},
+{subject:"生物",title:"八上生物重点带背（约44分钟）",type:"快速带背·版本待核",url:"https://www.bilibili.com/video/BV1SLS7Y8Eoa/",note:"适合快速记忆，但尚未充分核实与2025秋人教版新教材目录逐章一致；先对照课本目录使用。"},
+{subject:"生物",title:"2025适用人教版八上生物课程合集",type:"章节补漏·非浓缩",url:"https://www.bilibili.com/video/BV1xt3ezHEsa/",note:"38集动物、运动与行为等章节讲解；适合薄弱章节补课，不建议当作快速串讲。"},
+{subject:"地理",title:"八年级上册地理核心知识点动画梳理",type:"快速串讲·约2小时多",url:"https://www.bilibili.com/video/BV1QzSgBgEEH/",note:"合集含八上和八下；八上部分覆盖疆域、人口、民族、地形、气候、河流、自然灾害、资源、交通等。"},
+{subject:"地理",title:"人教版八年级地理微课知识点（短视频）",type:"碎片化速记",url:"https://www.bilibili.com/video/BV1xGHHzgEYM/",note:"每段多为2—8分钟，按知识点拆分；内容含八上、八下，选择八上对应条目。"},
+{subject:"历史",title:"2025新版八上历史名师精讲（19集）",type:"系统串讲·约8小时50分",url:"https://www.bilibili.com/video/BV1TypxzZEvT/",note:"覆盖鸦片战争至抗战相关内容；属于分课精讲，适合不理解的章节，不是短时浓缩视频。"},
+{subject:"历史",title:"2025秋八上历史系统课程（20集）",type:"章节复习·约7小时多",url:"https://www.bilibili.com/video/BV1LWnozdERM/",note:"含九一八、西安事变、七七事变等章节；按学校教材目录核对后选看。"},
+{subject:"道德与法治",title:"2025年秋八上道德与法治全册知识点",type:"全册知识点·优先",url:"https://www.bilibili.com/video/BV1Qc8XztEJC/",note:"作者说明依据2025年秋新版纸质课本整理；建议作为全册知识点主资源。"},
+{subject:"道德与法治",title:"八上道法全册知识点/考点带背检索",type:"快速背诵补充",url:"https://search.bilibili.com/all?keyword=2025秋%20人教版八年级上册道德与法治%20知识点%20考点带背",note:"如主资源是图文讲解，可再选择短时考点带背视频。"}
+];
 const subjects=[["全部","📚","全部课程"],["数学","📐","知识点·题型"],["英语","🔤","单词·语法"],["物理","⚛️","公式·实验"],["生物","🧬","概念·识图"],["地理","🌍","地图·考点"],["历史","📜","时间线"],["道德与法治","⚖️","知识·材料题"]];
 let active="全部";
 const done=JSON.parse(localStorage.getItem("studyDone")||"{}");
